@@ -5,6 +5,7 @@ module.exports = function($scope, Referrals, referralsCollection){
     $scope.newReferralName = null;
     $scope.underEdition = null;
     $scope.referrals = referralsCollection;
+    $scope.sortBy = "counter";
 
     //public methods
     $scope.refresh = function(){

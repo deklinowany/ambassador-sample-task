@@ -20,15 +20,24 @@
                 </span>
             </div>
         </div>
-
     </div>
 
     <div class="row">
-        <h3>List of referrals: <small>name -- number of visits -- click name to edit</small></h3>
+        <div class="col-lg-6">
+            <h3>List of referrals: <small>name -- number of visits -- click name to edit</small></h3>
+        </div>
     </div>
 
+    <div class="row">
+        <div class="col-lg-6">
+            <b>Sort by: </b>name: <input type="radio" ng-model="sortBy" ng-value="'name'"/> # of views: <input type="radio" ng-model="sortBy" ng-value="'counter'"/>
+            <b>reverse: </b><input type="checkbox" ng-model="sortRev"/>
+        </div>
+    </div>
+
+
     <div class="row highlight"  ng-class="{selected : referral === underEdition}"
-         ng-repeat="referral in referrals track by referral.id">
+         ng-repeat="referral in referrals | orderBy:sortBy:sortRev track by referral.id">
 
         <div class="col-lg-4" ng-click="setUnderEdition(referral)"><h4><b>{{ referral.name }}</b> <small><a ng-href="/{{ referral.name }}">[visit]</a></small></h4></div>
 
