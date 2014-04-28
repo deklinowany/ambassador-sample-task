@@ -1,20 +1,24 @@
-var $inject = ["$scope"];
-module.exports = function($scope){
+var $inject = ["$scope", "Referrals", "referralsCollection"];
+module.exports = function($scope, Referrals, referralsCollection){
 
-    $scope.referrals = [
-        {
-            name : "wolverines",
-            counter : 12
-        },
-        {
-            name : "spartans",
-            counter : 8
-        },
-        {
-            name : "spiders",
-            counter : 14
-        }
-    ]
+    // variables
+    $scope.newReferralName = null;
+    $scope.referrals = referralsCollection;
+
+    //public methods
+    $scope.refresh = function(){
+        Referrals.all().then(
+            function(data){
+                $scope.referrals = data;
+            }
+        );
+    }
+
+    $scope.add = function(){
+        Referrals.post($scope.newReferralName);
+        $scope.newReferralName = null;
+        $scope.refresh();
+    }
 
 }
 module.exports.$inject = $inject;
