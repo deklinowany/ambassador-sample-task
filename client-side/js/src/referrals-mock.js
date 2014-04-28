@@ -3,11 +3,17 @@ module.exports = function($q, $timeout){
 
     var referrals = null;
 
+    function increaseCounter(referral){
+        referral.counter = referral.counter + Math.floor(Math.random()*5);
+    };
+
     function readAll(){
         referrals = JSON.parse(window.localStorage.getItem("referrals"));
         if(!referrals){
             referrals = [];
         }
+        referrals.forEach(increaseCounter);
+        writeAll();
         return referrals;
     }
 
@@ -36,8 +42,8 @@ module.exports = function($q, $timeout){
             writeAll();
         },
 
-        update : function(referral){
-
+        update : function(){
+            writeAll();
         },
 
         "delete" : function(id){

@@ -3,6 +3,7 @@ module.exports = function($scope, Referrals, referralsCollection){
 
     // variables
     $scope.newReferralName = null;
+    $scope.underEdition = null;
     $scope.referrals = referralsCollection;
 
     //public methods
@@ -17,6 +18,7 @@ module.exports = function($scope, Referrals, referralsCollection){
     $scope.add = function(){
         Referrals.post($scope.newReferralName);
         $scope.newReferralName = null;
+        $scope.underEdition = null;
         $scope.refresh();
     }
 
@@ -25,5 +27,19 @@ module.exports = function($scope, Referrals, referralsCollection){
         $scope.refresh();
     }
 
+    $scope.update = function(referral, updateName){
+        referral.name = updateName;
+        Referrals.update();
+        $scope.refresh();
+    }
+
+    $scope.setUnderEdition = function (referral){
+        if(referral === $scope.underEdition){
+            $scope.underEdition = null;
+        }
+        else {
+            $scope.underEdition = referral;
+        }
+    }
 }
 module.exports.$inject = $inject;

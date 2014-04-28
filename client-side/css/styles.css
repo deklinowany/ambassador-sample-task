@@ -1,0 +1,7 @@
+.selected {
+    background-color : rgba(0,128,0,0.2);
+}
+
+.highlight:hover{
+    background-color: rgba(0,0,128,0.2);
+}
