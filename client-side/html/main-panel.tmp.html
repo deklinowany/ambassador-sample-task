@@ -1,7 +1,7 @@
 <div class="container">
 
     <div class="page-header">
-        <h2>WWW-Revolution</h2>
+        <h2><kbd>WWW</kbd>-revolution</h2>
     </div>
 
     <div class="row">
@@ -30,8 +30,10 @@
     <div class="row highlight"  ng-class="{selected : referral === underEdition}"
          ng-repeat="referral in referrals track by referral.id">
 
-        <div class="col-lg-4" ng-click="setUnderEdition(referral)"><h4><b>{{ referral.name }}</b></h4></div>
+        <div class="col-lg-4" ng-click="setUnderEdition(referral)"><h4><b>{{ referral.name }}</b> <small><a ng-href="/{{ referral.name }}">[visit]</a></small></h4></div>
+
         <div class="col-lg-1"><span class="badge"><h4><b>{{ referral.counter }}</b></h4></span></div>
+
         <div class="col-lg-4" ng-if="underEdition === referral">
             <h4><div class="input-group">
                 <input type="text" ng-model="updateName" class="form-control">
@@ -43,6 +45,7 @@
             </div>
             </h4>
         </div>
+
         <div class="col-lg-1" ng-if="underEdition === referral">
             <h4><span class="glyphicon glyphicon-trash text-danger" ng-click="remove(referral.id)"></span></h4>
         </div>
