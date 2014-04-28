@@ -26,7 +26,7 @@
 
     <div class="row" ng-repeat="referral in referrals">
 
-        {{ referral.name + ' ' + referral.counter }}
+        {{ referral.name + ' ' + referral.counter }} <span class="glyphicon glyphicon-remove" ng-click="remove(referral.id)"></span>
 
     </div>
 </div>

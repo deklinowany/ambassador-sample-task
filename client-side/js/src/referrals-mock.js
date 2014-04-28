@@ -41,7 +41,10 @@ module.exports = function($q, $timeout){
         },
 
         "delete" : function(id){
-
+            referrals = referrals.filter(function(referral){
+               return referral.id !== id;
+            });
+            writeAll();
         }
     }
 }

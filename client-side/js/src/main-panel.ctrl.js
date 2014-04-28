@@ -20,5 +20,10 @@ module.exports = function($scope, Referrals, referralsCollection){
         $scope.refresh();
     }
 
+    $scope.remove = function(id){
+        Referrals["delete"](id);
+        $scope.refresh();
+    }
+
 }
 module.exports.$inject = $inject;
