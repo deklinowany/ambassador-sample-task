@@ -1,5 +1,5 @@
-var $inject = ["$q", "$timeout"];
-module.exports = function($q, $timeout){
+var $inject = ["$q", "$timeout", "busyNotifier"];
+module.exports = function($q, $timeout, busyNotifier){
 
     var referrals = null;
 
@@ -26,7 +26,10 @@ module.exports = function($q, $timeout){
         all : function() {
             var deferred = $q.defer();
 
+            busyNotifier.setBusy();
+
             $timeout(function(){
+                busyNotifier.setNotBusy();
                 deferred.resolve(readAll());
             }, Math.random()*750);
 
@@ -51,7 +54,33 @@ module.exports = function($q, $timeout){
                return referral.id !== id;
             });
             writeAll();
+        },
+
+        exists : function(name){
+            var deferred = $q.defer();
+
+            busyNotifier.setBusy();
+
+            $timeout(function(){
+                var exists = false;
+                readAll();
+                referrals.forEach(function(referral){
+                   if(referral.name === name){
+                       exists = true;
+                   }
+                });
+                busyNotifier.setNotBusy();
+                if(exists){
+                    deferred.resolve();
+                }
+                else{
+                    deferred.reject();
+                }
+            }, Math.random()*750);
+
+            return deferred.promise;
         }
+
     }
 }
 module.exports.$inject = $inject;

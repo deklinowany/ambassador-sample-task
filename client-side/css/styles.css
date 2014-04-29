@@ -2,6 +2,33 @@
     background-color : rgba(0,128,0,0.2);
 }
 
-.highlight:hover{
-    background-color: rgba(0,0,128,0.2);
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+
+#BUSY_CURTAIN {
+    z-index:1000;
+    position: fixed;
+    top:0;
+    left:0;
+    height: 100vh;
+    width: 100vw;
+    background-image: url("/assets/spinner.gif");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: rgba(0,0,0,0.85);
+    background-size: 7%;
+}
+
+.landing-page{
+    z-index:1000;
+    position: fixed;
+    top:0;
+    left:0;
+    height: 100vh;
+    width: 100vw;
+    background-image: url("/assets/web.jpg");
+    background-size: cover;
 }

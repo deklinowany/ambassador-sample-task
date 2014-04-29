@@ -6,11 +6,12 @@
 
     <div class="row">
 
-        <div class="col-lg-1">
-            <div class="btn btn-primary" ng-click="refresh()">refresh <span class="glyphicon glyphicon-refresh"></span></div>
+        <div class="col-md-1">
+            <div class="btn btn-primary" ng-click="refresh()">refresh <span class="glyphicon glyphicon-refresh"></span>
+            </div>
         </div>
 
-        <div class="col-lg-6">
+        <div class="col-md-6">
             <div class="input-group">
                 <input type="text" ng-model="newReferralName" class="form-control">
                 <span class="input-group-btn">
@@ -23,39 +24,49 @@
     </div>
 
     <div class="row">
-        <div class="col-lg-6">
-            <h3>List of referrals: <small>name -- number of visits -- click name to edit</small></h3>
+        <div class="col-md-6">
+            <h3>List of referrals:
+                <small>name -- number of visits</small>
+            </h3>
         </div>
     </div>
 
     <div class="row">
-        <div class="col-lg-6">
-            <b>Sort by: </b>name: <input type="radio" ng-model="sortBy" ng-value="'name'"/> # of views: <input type="radio" ng-model="sortBy" ng-value="'counter'"/>
+        <div class="col-md-6">
+            <b>Sort by: </b>name: <input type="radio" ng-model="sortBy" ng-value="'name'"/> # of views: <input
+                type="radio" ng-model="sortBy" ng-value="'counter'"/>
             <b>reverse: </b><input type="checkbox" ng-model="sortRev"/>
         </div>
     </div>
 
-
-    <div class="row highlight"  ng-class="{selected : referral === underEdition}"
+    <div class="row" ng-class="{selected : referral === underEdition}"
+         ng-mouseenter="setUnderEdition(referral)" ng-mouseleave="setUnderEdition(null)"
          ng-repeat="referral in referrals | orderBy:sortBy:sortRev track by referral.id">
 
-        <div class="col-lg-4" ng-click="setUnderEdition(referral)"><h4><b>{{ referral.name }}</b> <small><a ng-href="/{{ referral.name }}">[visit]</a></small></h4></div>
+        <div class="col-md-5 vcenter">
+            <h4><strong>{{ referral.name }}</strong>
+                <small><a ng-href="/{{ referral.name }}">[visit]</a></small>
+            </h4>
+        </div>
 
-        <div class="col-lg-1"><span class="badge"><h4><b>{{ referral.counter }}</b></h4></span></div>
+        <div class="col-md-1 vcenter">
+            <div ><span class="badge"><b>{{ referral.counter }}</b></span></div>
+        </div>
 
-        <div class="col-lg-4" ng-if="underEdition === referral">
-            <h4><div class="input-group">
+        <div class="col-md-3 col-md-offset-1 vcenter" ng-if="underEdition === referral">
+            <div class="input-group">
                 <input type="text" ng-model="updateName" class="form-control">
             <span class="input-group-btn">
-                <button class="btn btn-primary" type="button" ng-click="update(referral, updateName)" ng-disabled="!updateName || (updateName === referral.name)">
+                <button class="btn btn-primary" type="button" ng-click="update(referral, updateName)"
+                        ng-disabled="!updateName || (updateName === referral.name)">
                     rename
                 </button>
             </span>
             </div>
-            </h4>
+
         </div>
 
-        <div class="col-lg-1" ng-if="underEdition === referral">
+        <div class="col-md-1 vcenter" ng-if="underEdition === referral">
             <h4><span class="glyphicon glyphicon-trash text-danger" ng-click="remove(referral.id)"></span></h4>
         </div>
 
