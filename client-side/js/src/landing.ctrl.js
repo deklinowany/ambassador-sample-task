@@ -3,8 +3,9 @@ module.exports = function($scope, $location){
 
     $scope.referral = $location.search().link;
 
-    if(!$scope.referral){
-        $location.path("/");
+    $scope.loupeConfig = {
+        radius: "10vmin",
+        revealTimeout: 15*1000
     }
 
 };

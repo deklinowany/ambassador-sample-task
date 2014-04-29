@@ -3,8 +3,7 @@ module.exports = function($rootScope, $location, busyNotifier){
 
     $rootScope.busyNotifier = busyNotifier;
 
-    $rootScope.$on("$routeChangeError", function(event){
-        console.log(event);
+    $rootScope.$on("$routeChangeError", function(){
         $location.path("/");
     });
 

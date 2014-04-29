@@ -23,7 +23,6 @@
 }
 
 .landing-page{
-    z-index:1000;
     position: fixed;
     top:0;
     left:0;
@@ -31,4 +30,15 @@
     width: 100vw;
     background-image: url("/assets/web.jpg");
     background-size: cover;
+}
+
+.slogan {
+    position: absolute;
+    bottom:10vmin;
+    left:10vmin;
+    text-align:center;
+    font-size: 10vmin;
+    padding: 3vmin;
+    border-radius: 5vmin;
+    background-color:rgba(128,128,128,0.8);
 }
